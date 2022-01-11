@@ -1,0 +1,26 @@
+namespace message; /// 生成对应的目录
+
+attribute "priority";
+
+enum Type : byte { Unknown = 1, Pending, Gossip }
+
+union Any { Monster, Weapon, Pickup }
+
+struct Vec3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+table Monster {
+  type:Type = Unknown (id:0);
+  mana:short = 150;
+  hp:short = 100;
+  name:string;
+  friendly:bool = false (deprecated, priority: 1);
+  inventory:[ubyte];
+  color:Color = Blue;
+  test:Any;
+}
+
+root_type Monster;
